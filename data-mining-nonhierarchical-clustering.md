@@ -114,6 +114,20 @@ Draw a WSS plot with range(1,11) on x-axis and WSS values for every cluster coun
 plt.plot(range(1,11), wss);
 ```
 
+Silhouette Score method would be more appropriate for arriving at optimum number of clusters. This is a statistical method and hence should be preferred over visual elbow method. 
+
+```python
+sil_score = []
+from sklearn.metrics import silhouette_score
+# dissimilarity would not be defined for a single cluster, thus, minimum number of clusters should be 2
+for k in range(2,12):
+  k_means = KMeans(n_clusters = k).fit(scaled_df)
+  labels = k_means.labels_
+  sil_score.append(silhouette_score(scaled_df, labels, metric = 'euclidean'))
+# We are drawing plot for 1 to 10 on x-axis, while the range for k in for loop is 2 to 12. We are trying to maintain the same points on the a-axis.
+plt.plot(range(1,11), sil_score);
+```
+
 Pick the optimal value of the n_cluster looking at the plot. The count after which the drop is not significant is good to be picked as desired n_cluster value. 
 Assuming that value is coming out to be 4, run the following code. Also, we are assigning the resulting labels to labels, which we can add to the original dataframe.
 **This step is essential for KMeans as we have to decide the number of clusters beforehand.**
