@@ -45,7 +45,7 @@ The 'linkage' function performs hierarchical/agglomerative clustering.
 The method='ward' uses the Ward variance minimization algorithm. The other possible method values are single, complete, average, weighted, centroid
 
 ```python
-wardlink = linkage(data, method = 'ward')
+wardlink = linkage(data_df, method = 'ward')
 ```
 
 You will want to plot the dendrogram to decide how many clusters you want to choose from the result. 
