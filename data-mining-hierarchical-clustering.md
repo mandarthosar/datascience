@@ -30,6 +30,7 @@ Copy column of interest in new dataframe by filtering or dropping the columns
 
 ```python
 data_df = df.iloc[:, 1:6] # Filter columns of interest using iloc. These are the continuous variable columns only
+data_df = df.drop(['col1','col2'], axis=1) # Drop the columns and assign the resulting dataframe to new object
 ```
 
 If scaling is required then do it on the data_df dataframe at this stage. 
@@ -95,12 +96,24 @@ clusters
 Attach the array 'clusters' back to the original dataframe by adding a new column 'Clusters'
 
 ```python
-df['clusters'] = clusters
+df['Clusters'] = clusters
 ```
 
 Check if the original dataframe obtained is looking Ok.
 
 ```python
 df.head()
+```
+
+Check the values of the means of each column for the clusters.
+
+```python 
+df.groupby(by="Clusters").mean()
+```
+
+Write the output to another CSV file.
+
+```python
+df.to_csv("final.csv")
 ```
 
