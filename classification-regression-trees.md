@@ -177,9 +177,9 @@ Plotting lines
 
 ```python
 plt.plot([0,1], [0,1], linestyle='--'); # Plotting a dashed line between two points 0,0 and 1,1
-plt.plot(fpr, tpr, marker='.'); # Plotting a line with fpr on x-axis and tpr on y-axis
-plt.xlabel('FPR');
-plt.ylabel('TPR');
+plt.plot(fpr, tpr, marker='.', label='Decision Tree'); # Plotting a line with fpr on x-axis and tpr on y-axis
+plt.xlabel('False Positive Rate');
+plt.ylabel('True Positive Rate');
 plt.title('ROC curve for training data');
 plt.show()
 ```
