@@ -81,12 +81,21 @@ Fitting the input and target training observations on decision tree model
 dt_model.fit(X_train, y_train)
 ```
 
-**Now we will create a tree.**
+We are now trying to predict the values of target column based on X_test part of the data.
+
+```python
+y_predict = dt_model.predict(X_test)
+```
+
+
+**Creating a tree.**
 
 First import required library
 We will create labels for binary values of tree splits
 We will open a dot file for storing tree data
 We will have to close the open file
+
+To view the tree, this dot file needs to be viewed in browser that has graphviz functionality. 
 
 ```python
 from sklearn import tree
@@ -102,10 +111,7 @@ The importance of each feature refers to total reduction of the criterion brough
 print(pd.DataFrame(dt_model.feature_importances_, columns=["Imp"], index=X_train.columns))
 ```
 
-We are now trying to predict the values of target column based on X_test part of the data.
-```python
-y_predict = dt_model.predict(X_test)
-```
+
 
 **Regularizing the decision tree** 
 
@@ -135,7 +141,7 @@ y_train_predict = reg_dt_model.predict(X_train)
 y_test_predict = reg_dt_model.predict(X_test)
 ```
 
-** AUC and ROC for the training data**
+**AUC and ROC for the training data**
 
 Area under the curve and receiver operating characteristic (ROC) curve are important for analyzing the decision tree. ROC is a graph showing the performance of a classification model at all classification thresholds.
 
