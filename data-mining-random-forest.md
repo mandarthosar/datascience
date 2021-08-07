@@ -119,7 +119,7 @@ Import libraries for confusion matrix and classification report
 from sklearn.metrics import confusion_matrix,classification_report
 ```
 
-** Creating confusion matrix**
+**Creating confusion matrix**
 
 Confusion matrix for training data
 
