@@ -209,6 +209,6 @@ plt.show()    # Show the plot
 This score will quickly tell you how performant is your model on training and test data. Theorotically, there will some drop in the test score as model is trying to predict unknown observations with what it has learnt from training data.
 
 ```python
-print('Performance of gridsearch model on training data:', reg_dt_model.score(X_train, y_train))
-print('Performance of gridsearch model on test data:', reg_dt_model.score(X_test, y_test))
+print('Performance of gridsearch model on training data:', best_grid.score(X_train, y_train))
+print('Performance of gridsearch model on test data:', best_grid.score(X_test, y_test))
 ```
