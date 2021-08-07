@@ -103,7 +103,7 @@ grid_search.best_params_
 Get the best grid
 
 ```python
-best_grid = grid_search.best_estimator_
+grid_search.best_estimator_
 ```
 
 Getting the y prediction values
