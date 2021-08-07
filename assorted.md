@@ -77,6 +77,15 @@ ax.set_xticklabels(
 
 ## Random
 
+**Loading CSV file from different directory**
+
+If you have your source data file in different directory then use this
+
+```python
+import os
+os.chdir('')
+```
+
 Rounding off percentages to 2 decimal columns
 
 ```python
