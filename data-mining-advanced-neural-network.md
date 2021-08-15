@@ -93,7 +93,7 @@ clf = MLPClassifier(
     max_iter=5000,  # maximum iterations
     solver='sgd',  # 'sgd' refers to stochastic gradient descent for weight optimization
     verbose=True,  # for printing progress to console
-    random_state=21,
+    random_state=123,
     tol=0.01 # tolerance for the optimization
     )
 ```
@@ -150,42 +150,48 @@ from sklearn.metrics import roc_curve
 Creating AUC score and ROC for test data
 
 ```python
-# predict probabilities
+# Predict probabilities for test data
 probs = clf.predict_proba(X_test)
-# keep probabilities for the positive outcome only
-probs = probs[:, 1]
-# calculate AUC
 
+# Taking probabilities for the positive outcome only
+probs = probs[:, 1]
+
+# Calculate AUC
 auc = roc_auc_score(y_test, probs)
 print('AUC: %.3f' % auc)
-# calculate roc curve
 
+# Calculate ROC curve
 fpr, tpr, thresholds = roc_curve(y_test, probs)
 plt.plot([0, 1], [0, 1], linestyle='--')
-# plot the roc curve for the model
+
+# Plot the ROC curve for the model
 plt.plot(fpr, tpr, marker='.')
-# show the plot
+
+# Show the plot
 plt.show()
 ```
 
 Creating AUC score and ROC for train data
 
 ```python
-# predict probabilities
+# Predict probabilities for train data
 probs = clf.predict_proba(X_train)
-# keep probabilities for the positive outcome only
-probs = probs[:, 1]
-# calculate AUC
 
+# Taking probabilities for the positive outcome only
+probs = probs[:, 1]
+
+# Calculate AUC
 auc = roc_auc_score(y_train, probs)
 print('AUC: %.3f' % auc)
-# calculate roc curve
 
+# Calculate ROC curve
 fpr, tpr, thresholds = roc_curve(y_train, probs)
 plt.plot([0, 1], [0, 1], linestyle='--')
-# plot the roc curve for the model
+
+# Plot the ROC curve for the model
 plt.plot(fpr, tpr, marker='.')
-# show the plot
+
+# Show the plot
 plt.show()
 ```
 
