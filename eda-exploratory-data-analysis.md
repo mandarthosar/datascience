@@ -10,6 +10,23 @@ import seaborn as sns
 %matplotlib inline
 ```
 
+Load the data file
+
+```python
+df = pd.read_csv('file.csv')
+```
+
+Do basic analysis
+
+```python
+df.head()
+df.describe() 
+df.info()
+df.shape
+df.isnull().sum()
+df.duplicated().sum()
+```
+
 ## Distribution of target column
 
 We want to check how the target column observations are distributed.
