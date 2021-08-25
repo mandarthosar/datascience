@@ -6,6 +6,7 @@ Load libraries
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 %matplotlib inline
 ```
 
@@ -38,6 +39,21 @@ Degree of skewness
 df.skew()
 ```
 
+## Checking kurtosis
+
+Kurtosis is the sharpness of the peak of a frequency-distribution curve. It is actually the measure of outliers present in the distribution.
+
+* High kurtosis in a data set is an indicator that data has heavy outliers.
+* Low kurtosis in a data set is an indicator that data has lack of outliers.
+* If kurtosis value is +ve then it means the curve is pointy and —ve means flat.
+
+* Kurtosis > 3: If the distribution is tall and thin it is called a leptokurtic distribution. Values in a leptokurtic distribution are near the mean or at the extremes.
+* Kurtosis < 3: A flat distribution where the values are moderately spread out (i.e., unlike leptokurtic) is called platykurtic distribution.
+* Kurtosis = 3: A distribution whose shape is in between a leptokurtic distribution and a platykurtic distribution is called a mesokurtic distribution. A mesokurtic distribution looks more close to a normal distribution.
+
+```python
+df.kurtosis()
+```
 
 ## Separating continous and categorical columns
 
@@ -79,6 +95,24 @@ For continous columns, scatter plot are better representation.
 ```python
 sns.scatterplot(x='col1', y='col2', data=df)
 plt.show()
+```
+
+Creating correlation plot and heatmap
+
+```python
+plt.figure(figsize=(12, 10))
+mask = np.triu(np.ones_like(dataframe.corr(), dtype=np.bool))
+heatmap = sns.heatmap(df.corr(), mask = mask, annot=True, cmap='BrBG')
+heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':12}, pad=12);
+plt.show()
+```
+
+Optional heatmap showing correlation with dependent variable
+
+```python
+plt.figure(figsize=(8, 12))
+heatmap = sns.heatmap(df.corr()[['target']].sort_values(by='target', ascending=False), vmin=-1, vmax=1, annot=True, cmap='BrBG')
+heatmap.set_title('Features Correlating with Target variable', fontdict={'fontsize':18}, pad=16);
 ```
 
 ## Multivariate analysis
