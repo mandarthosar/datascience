@@ -77,7 +77,14 @@ df.kurtosis()
 In this step, we will separate out continous data columns and categorical data columns for ease of plotting and further analysis
 
 ```python
-continuous=df.dtypes[(df.dtypes=='int64')|(df.dtypes=='float64')].index
+continuous_cols = df.dtypes[(df.dtypes=='int64')|(df.dtypes=='float64')].index
+# continuous_cols = df.select_dtypes(include='number').columns
+object_cols = df.select_dtypes(include='object').columns
+categorical_cols = df.select_dtypes(include='category').columns
+
+
+
+
 ```
 
 
@@ -92,7 +99,7 @@ df.hist(bins=10, figsize=(15, 10));  # column='col' - this is an optional parame
 Creating blox plot for continous columns
 
 ```python
-data_plot=df[continuous]
+data_plot=df[continuous_cols]
 data_plot.boxplot(figsize=(15,10), rot=45);
 ```
 
@@ -137,6 +144,15 @@ heatmap.set_title('Features Correlating with Target variable', fontdict={'fontsi
 We will create pairplot for all continuous variables. 
 
 ```python
-sns.pairplot(df[continuous])  # hue='target' can be used for better analysis of the target column, height is optional parameter which represent height of scalar in inches
+sns.pairplot(df[continuous_cols])  # hue='target' can be used for better analysis of the target column, height is optional parameter which represent height of scalar in inches
 plt.show()
+```
+
+## Getting unique count of all object columns
+
+```python
+for column in object_cols:
+    print(column.upper(),': ',df[column].nunique())
+    print(df[column].value_counts().sort_values())
+    print('\n')
 ```
