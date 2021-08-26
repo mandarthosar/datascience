@@ -128,6 +128,7 @@ plt.figure(figsize=(12, 10))
 mask = np.triu(np.ones_like(df.corr(), dtype=np.bool))
 heatmap = sns.heatmap(df.corr(), mask = mask, annot=True, cmap='BrBG')
 heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':12}, pad=12);
+plt.xticks(rotation=45)
 plt.show()
 ```
 
