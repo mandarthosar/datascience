@@ -125,7 +125,7 @@ Creating correlation plot and heatmap
 
 ```python
 plt.figure(figsize=(12, 10))
-mask = np.triu(np.ones_like(dataframe.corr(), dtype=np.bool))
+mask = np.triu(np.ones_like(df.corr(), dtype=np.bool))
 heatmap = sns.heatmap(df.corr(), mask = mask, annot=True, cmap='BrBG')
 heatmap.set_title('Correlation Heatmap', fontdict={'fontsize':12}, pad=12);
 plt.show()
