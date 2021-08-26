@@ -105,9 +105,10 @@ Check if the original dataframe obtained is looking Ok.
 df.head()
 ```
 
-Check the values of the means of each column for the clusters.
+Check the values of the std and means of each column for the clusters.
 
 ```python 
+df.groupby(by="Clusters").std()
 df.groupby(by="Clusters").mean()
 ```
 
@@ -117,3 +118,24 @@ Write the output to another CSV file.
 df.to_csv("final.csv")
 ```
 
+## Line plot for standard deviation and mean for different columns 
+
+Plot for standard deviation grouped by clusters
+
+```python
+plt.plot(df_bank.groupby(by="Clusters").std().T)
+plt.xticks(rotation=45)
+plt.legend(df_bank.groupby(by="Clusters").std().T)
+plt.title("Standard deviation of columns of different Clusters")
+plt.show()
+```
+
+Plot for mean grouped by clusters
+
+```python
+plt.plot(df_bank.groupby(by="Clusters").mean().T)
+plt.xticks(rotation=45)
+plt.legend(df_bank.groupby(by="Clusters").mean().T)
+plt.title("Means of columns of different Clusters")
+plt.show()
+```
