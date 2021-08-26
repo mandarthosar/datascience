@@ -148,6 +148,14 @@ sns.pairplot(df[continuous_cols])  # hue='target' can be used for better analysi
 plt.show()
 ```
 
+We will create scatterplot for all continuous variables.
+
+```python
+plt.figure(figsize=(10,10))
+sns.scatterplot(data=df[continuous_cols])
+plt.show()
+```
+
 ## Getting unique count of all object columns
 
 ```python
