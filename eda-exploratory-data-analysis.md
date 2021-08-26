@@ -231,3 +231,46 @@ for i in continuous_cols:
 data_plot=df[continuous_cols]
 data_plot.boxplot(figsize=(15,10), rot=45);
 ```
+
+## Scaling the data
+
+General practice for data scaling 
+
+1. Fit the scaler using available training data. This is done by calling the fit() function.
+2. Apply the scale to training data. This is done by calling the transform() function.
+3. Apply the scale to data going forward.
+
+
+**Normalization**
+
+Formula = (x – min) / (max – min)
+
+Assumptions:
+
+* Normalization requires that you know or are able to accurately estimate the minimum and maximum observable values.
+
+```python
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler() # Define min max scaler
+df_scaled = scaler.fit_transform(data) # Transform data
+df_scaled
+```
+
+**Standardization**
+
+Formula = (x – mean) / standard_deviation
+
+Subtracting the mean from the data is called _centering_, whereas dividing by the standard deviation is called _scaling_. As such, the method is sometime called "_center scaling_".
+
+The mean and standard deviation estimates of a dataset can be more robust to new data than the minimum and maximum.
+
+Assumptions:
+
+* Standardization requires that you know or are able to accurately estimate the mean and standard deviation of observable values.
+
+```python
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()   # Define standard scaler
+df_scaled = scaler.fit_transform(df) # Transform data
+df_scaled
+```
