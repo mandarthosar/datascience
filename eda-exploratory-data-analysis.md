@@ -156,3 +156,31 @@ for column in object_cols:
     print(df[column].value_counts().sort_values())
     print('\n')
 ```
+
+## Pandas Profiling
+
+```python
+import pandas_profiling
+profile = df.profile_report(title='Report on data frame')
+profile.to_file(output_file="dataframe-report.html")
+```
+
+## Treating Outliars
+
+```python
+def replace_outlier(col):
+    Q1, Q3 = np.quantile(col, [.25, .75])
+    IQR = Q3 - Q1
+    LL = Q1 - 1.5*IQR
+    UL = Q3 + 1.5*IQR
+    return LL, UL
+
+for i in continuous_cols:
+    LL, UL = replace_outlier(df[i])
+    df_num[i] = np.where(df_num[i]> UL, UL, df_num[i])
+    df_num[i] = np.where(df_num[i]< LL, LL, df_num[i])
+    
+# check if outliars are treated
+data_plot=df[continuous_cols]
+data_plot.boxplot(figsize=(15,10), rot=45);
+```
