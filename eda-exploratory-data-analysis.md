@@ -186,8 +186,8 @@ def replace_outlier(col):
 
 for i in continuous_cols:
     LL, UL = replace_outlier(df[i])
-    df_num[i] = np.where(df_num[i]> UL, UL, df_num[i])
-    df_num[i] = np.where(df_num[i]< LL, LL, df_num[i])
+    df[i] = np.where(df[i]> UL, UL, df[i])
+    df[i] = np.where(df[i]< LL, LL, df[i])
     
 # check if outliars are treated
 data_plot=df[continuous_cols]
