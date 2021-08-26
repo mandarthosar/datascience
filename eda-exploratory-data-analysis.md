@@ -274,3 +274,9 @@ scaler = StandardScaler()   # Define standard scaler
 df_scaled = scaler.fit_transform(df) # Transform data
 df_scaled
 ```
+The output would be numpy.ndarray. So you may need to convert it back to dataframe using
+
+```python
+df_scaled = pd.DataFrame(df_scaled)
+```
+
