@@ -74,6 +74,16 @@ ax.set_xticklabels(
 );
 ```
 
+## Scaling
+
+It is important to unscale data to interpret it against the original data. You can do it this way.
+
+```python
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+df_scaled = scaler.fit_transform(df)
+df_unscaled = scaler.inverse_transform(df_scaled)
+```
 
 ## Random
 
@@ -91,3 +101,4 @@ Rounding off percentages to 2 decimal columns
 ```python
 print("Percentage of something",round(df['col'].value_counts().values[0]/df['col'].count()*100,2),'%') # values[0] picks the required value from the series
 ```
+
