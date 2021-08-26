@@ -166,6 +166,44 @@ for column in object_cols:
     print('\n')
 ```
 
+## Checking means, std and variance of continous columns graphically
+
+Creating empty lists for storing means, std and variance of the data frame.
+
+```python
+df_mean = []
+df_std = []
+df_var = []
+```
+
+Creating a for loop for capturing statistical values for every column.
+
+```python
+for i in continuous_cols:
+    df_mean.append(df[i].mean())
+    df_std.append(df[i].std())
+    df_var.append(df[i].var())
+```
+
+Creating a data series out of different serieses.
+
+```python
+stat_sample = pd.DataFrame(
+    {'Means': df_mean,
+     'StdDev': df_std,
+     'Var': df_var
+    })
+stat_sample # This will show the values being collected
+```
+
+Line plot for stats of data frame
+
+```python
+plt.plot(stat_sample)
+plt.legend(stat_sample.columns)
+```
+
+
 ## Pandas Profiling
 
 ```python
