@@ -140,6 +140,21 @@ heatmap = sns.heatmap(df.corr()[['target']].sort_values(by='target', ascending=F
 heatmap.set_title('Features Correlating with Target variable', fontdict={'fontsize':18}, pad=16);
 ```
 
+Creating barplot between object and continuous data columns
+
+```python
+fig=plt.figure(figsize=(20,20))
+for i in range(0,len(object_cols)):
+    for j in range(0,len(continuous_cols)):
+        ax = fig.add_subplot(len(object_cols),len(continuous_cols),i*len(continuous_cols)+j+1)
+        sns.barplot(x=object_cols[i], y=continuous_cols[j], data=df)
+        ax.set_title("Barplot of "+str(object_cols[i])+" and "+str(continuous_cols[j]),color='Red')
+        print(f"i = {i} and j = {j}")
+    
+plt.tight_layout()
+plt.show()
+```
+
 ## Multivariate analysis
 
 We will create pairplot for all continuous variables. 
