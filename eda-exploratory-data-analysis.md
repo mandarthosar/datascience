@@ -227,7 +227,24 @@ profile = df.profile_report(title='Report on data frame')
 profile.to_file(output_file="dataframe-report.html")
 ```
 
-## Treating Outliars
+## Treating Outliers
+
+Some models are not affected by outliers. For example, decision tree is not affected by outliers. ANN are not impacted by outliers if their proportion is less i.e. <15%
+
+So, we need to check the proportion of outliers to check if we really need to treat outliers. 
+
+```python
+for col in continuous_cols:
+    q75,q25 = np.percentile(df[col],[75,25])
+    intr_qr = q75-q25
+    max = q75+(1.5*intr_qr)
+    min = q25-(1.5*intr_qr)
+    print("Observations for "+str(col))
+    print(f"Count of total observations in a column: {df[col].count()}")
+    print(f"Count of outliers: {df[df[col]>max][col].count()+df[df[col]<min][col].count()}")
+    print(f"Proportion of outliars in the column: { (df[df[col]>max][col].count()+df[df[col]<min][col].count()) / (df[col].count()) }")
+    print()
+```
 
 ```python
 def replace_outlier(col):
